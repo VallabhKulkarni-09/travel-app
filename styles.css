@@ -1,0 +1,164 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 0;
+    margin-bottom: 30px;
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.hero-section .lead {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.search-box {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.card-title i {
+    margin-right: 10px;
+    color: #3498db;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    border: none;
+    padding: 12px 30px;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.navbar {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand i {
+    margin-right: 8px;
+}
+
+.destination-card {
+    cursor: pointer;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.destination-card img {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.destination-card .favorite-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.destination-card .favorite-btn:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+.destination-card .favorite-btn i {
+    color: #e74c3c;
+    font-size: 1.2rem;
+}
+
+.view-toggle .btn {
+    padding: 0.25rem 0.5rem;
+}
+
+.view-toggle .btn.active {
+    background-color: #3498db;
+    color: white;
+}
+
+.list-view .destination-card {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.list-view .destination-card img {
+    width: 200px;
+    height: 150px;
+}
+
+.list-view .card-body {
+    flex: 1;
+}
+
+.weather-info {
+    background-color: #f8f9fa;
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+}
+
+.weather-info i {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+}
+
+footer {
+    margin-top: auto;
+}
+
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-section .lead {
+        font-size: 1.2rem;
+    }
+
+    .list-view .destination-card {
+        flex-direction: column;
+    }
+
+    .list-view .destination-card img {
+        width: 100%;
+        height: 200px;
+    }
+} 
