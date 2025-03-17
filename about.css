@@ -1,0 +1,255 @@
+/* About page specific styles */
+.about-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('images/about-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    padding: 120px 0;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.3) 0%, rgba(41, 128, 185, 0.3) 100%);
+}
+
+.about-hero h1 {
+    font-size: 3.8rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.about-hero .lead {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Divider */
+.divider {
+    height: 3px;
+    width: 60px;
+    background: #3498db;
+    margin: 20px 0 40px;
+}
+
+/* Mission cards */
+.mission-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.mission-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.mission-card .icon-box {
+    width: 70px;
+    height: 70px;
+    background: #3498db;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.mission-card .icon-box i {
+    font-size: 2rem;
+    color: white;
+}
+
+.mission-card h4 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* Feature cards */
+.feature-card {
+    text-align: center;
+    padding: 40px 20px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.feature-card i {
+    font-size: 3rem;
+    color: #3498db;
+    margin-bottom: 20px;
+}
+
+.feature-card h4 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* Team section */
+.team-image {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.team-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.team-content {
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.team-content h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.team-content p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+/* Testimonials */
+.testimonials-section {
+    margin: 80px 0;
+}
+
+.testimonial-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    height: 100%;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.testimonial-card .quote-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    color: rgba(52, 152, 219, 0.2);
+}
+
+.testimonial-card p {
+    font-style: italic;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+}
+
+.testimonial-author img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.testimonial-author h5 {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.testimonial-author small {
+    color: #6c757d;
+}
+
+/* Contact section */
+.contact-section {
+    margin: 80px 0 40px;
+}
+
+.contact-item {
+    padding: 30px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateY(-5px);
+}
+
+.contact-item i {
+    font-size: 2.5rem;
+    color: #3498db;
+    margin-bottom: 15px;
+}
+
+.contact-item h5 {
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+/* Animation classes */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .about-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .about-hero .lead {
+        font-size: 1.2rem;
+    }
+    
+    .mission-card, .feature-card, .testimonial-card {
+        margin-bottom: 30px;
+    }
+    
+    .team-content {
+        margin-top: 30px;
+    }
+    
+    .contact-item {
+        margin-bottom: 30px;
+    }
+} 
