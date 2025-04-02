@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
-    // DOM Elements
     const destinationsList = document.getElementById('destinationsList');
     const startDate = document.getElementById('startDate');
     const endDate = document.getElementById('endDate');
@@ -70,17 +69,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const aboutLink = document.querySelector('a[href="#"].nav-link:not(.active)');
     const searchSuggestions = document.getElementById('searchSuggestions');
 
-    // Initialize Bootstrap modals
     const filterModal = new bootstrap.Modal(document.getElementById('filterModal'));
     const favoritesModal = new bootstrap.Modal(document.getElementById('favoritesModal'));
 
-    // State
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     let filteredDestinations = [...popularDestinations];
     let currentView = 'grid';
     let currentDestination = null;
 
-    // Functions
     function updateDestinationsList() {
         destinationsList.innerHTML = '';
         destinationsList.classList.add('loading');
@@ -153,7 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 10);
             });
 
-            // Add event listeners to buttons
             addDestinationCardEventListeners();
         }, 300);
     }
@@ -166,12 +161,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (index === -1) {
             favorites.push(destName);
             
-            // Add heart animation
             icon.classList.remove('bi-heart');
             icon.classList.add('bi-heart-fill');
             btn.classList.add('active');
             
-            // Add pulse animation
             btn.style.animation = 'pulse 0.5s';
             setTimeout(() => {
                 btn.style.animation = '';
@@ -179,7 +172,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             favorites.splice(index, 1);
             
-            // Remove heart animation
             icon.classList.remove('bi-heart-fill');
             icon.classList.add('bi-heart');
             btn.classList.remove('active');
@@ -229,7 +221,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
                 favoritesList.appendChild(col);
                 
-                // Trigger animation after a small delay
                 setTimeout(() => {
                     col.style.opacity = '1';
                     col.style.transform = 'translateY(0)';
@@ -237,13 +228,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Add event listeners to remove buttons
         document.querySelectorAll('.remove-favorite-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const destName = btn.dataset.destination;
                 const col = btn.closest('.col-md-6');
                 
-                // Animate removal
                 col.style.opacity = '0';
                 col.style.transform = 'translateY(20px)';
                 
@@ -260,7 +249,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const end = new Date(endDate.value);
             const duration = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
             
-            // Animate the duration change
             tripDuration.style.transition = 'all 0.3s ease';
             tripDuration.style.transform = 'scale(1.1)';
             tripDuration.style.color = '#3498db';
@@ -278,7 +266,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (budget.value && travelers.value) {
             const perPerson = Math.round(budget.value / travelers.value);
             
-            // Animate the budget change
             perPersonBudget.style.transition = 'all 0.3s ease';
             perPersonBudget.style.transform = 'scale(1.1)';
             perPersonBudget.style.color = '#3498db';
@@ -298,10 +285,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const maxPrice = document.getElementById('maxPrice').value;
         const continent = document.getElementById('continentFilter').value;
         
-        // Add loading state
         destinationsList.classList.add('loading');
         
-        // Simulate filtering delay for better UX
         setTimeout(() => {
             filteredDestinations = popularDestinations.filter(dest => {
                 const matchesSearch = dest.name.toLowerCase().includes(searchTerm);
@@ -311,32 +296,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 return matchesSearch && matchesPrice && matchesContinent;
             });
 
-            if (sortBy.value) {
-                sortDestinations(sortBy.value);
-            } else {
-                updateDestinationsList();
-            }
-            
-            // Show filter results count with animation
-            const resultsCount = document.createElement('div');
-            resultsCount.className = 'alert alert-info mt-3';
-            resultsCount.innerHTML = `<i class="bi bi-info-circle"></i> Found ${filteredDestinations.length} destinations matching your criteria.`;
-            resultsCount.style.opacity = '0';
-            resultsCount.style.transform = 'translateY(10px)';
-            resultsCount.style.transition = 'all 0.3s ease';
-            
-            const existingAlert = document.querySelector('.alert-info');
-            if (existingAlert) {
-                existingAlert.remove();
-            }
-            
-            destinationsList.parentNode.insertBefore(resultsCount, destinationsList);
-            
             setTimeout(() => {
                 resultsCount.style.opacity = '1';
                 resultsCount.style.transform = 'translateY(0)';
                 
-                // Auto-hide after 5 seconds
                 setTimeout(() => {
                     resultsCount.style.opacity = '0';
                     resultsCount.style.transform = 'translateY(10px)';
@@ -404,13 +367,11 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
 
-        // Remove existing modal if any
         const existingModal = document.getElementById('destinationDetailsModal');
         if (existingModal) {
             existingModal.remove();
         }
 
-        // Add new modal to body
         document.body.insertAdjacentHTML('beforeend', detailsHTML);
         const detailsModal = new bootstrap.Modal(document.getElementById('destinationDetailsModal'));
         detailsModal.show();
@@ -420,11 +381,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const dest = popularDestinations.find(d => d.name === destName);
         if (!dest) return;
 
-        // Set the destination
         destination.value = dest.name;
         currentDestination = dest;
 
-        // Set default dates if not set
         if (!startDate.value) {
             const tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
@@ -436,22 +395,18 @@ document.addEventListener('DOMContentLoaded', function() {
             endDate.value = nextWeek.toISOString().split('T')[0];
         }
 
-        // Set default number of travelers if not set
         if (!travelers.value) {
             travelers.value = 2;
         }
 
-        // Set suggested budget if not set
         if (!budget.value) {
             budget.value = dest.price * travelers.value;
         }
 
-        // Update calculations
         calculateTripDuration();
         updateBudgetPerPerson();
         updateWeatherInfo(dest);
 
-        // Scroll to booking section
         document.querySelector('.container.my-5').scrollIntoView({ behavior: 'smooth' });
     }
 
@@ -466,7 +421,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Event Listeners
     startDate.addEventListener('change', calculateTripDuration);
     endDate.addEventListener('change', calculateTripDuration);
     travelers.addEventListener('input', updateBudgetPerPerson);
@@ -489,7 +443,6 @@ document.addEventListener('DOMContentLoaded', function() {
         filterModal.hide();
     });
 
-    // Add smooth scrolling for all links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -506,7 +459,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Navbar scroll effect
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
@@ -516,14 +468,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Add smooth transitions for view toggle
     gridViewBtn.addEventListener('click', function() {
         if (currentView !== 'grid') {
             currentView = 'grid';
             listViewBtn.classList.remove('active');
             gridViewBtn.classList.add('active');
             
-            // Add transition class to container
             destinationsList.style.transition = 'opacity 0.3s ease';
             destinationsList.style.opacity = '0';
             
@@ -542,7 +492,6 @@ document.addEventListener('DOMContentLoaded', function() {
             gridViewBtn.classList.remove('active');
             listViewBtn.classList.add('active');
             
-            // Add transition class to container
             destinationsList.style.transition = 'opacity 0.3s ease';
             destinationsList.style.opacity = '0';
             
@@ -555,7 +504,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Add smooth reveal animations on page load
     function initPageAnimations() {
         const heroElements = document.querySelectorAll('.hero-section > .container > .row > div');
         heroElements.forEach((el, index) => {
@@ -584,16 +532,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Initialize page animations
     initPageAnimations();
 
-    // Initialize the app
     const today = new Date();
     startDate.min = today.toISOString().split('T')[0];
     endDate.min = today.toISOString().split('T')[0];
     updateDestinationsList();
 
-    // Add input animations
     const formInputs = document.querySelectorAll('.form-control, .form-select');
     formInputs.forEach(input => {
         input.addEventListener('focus', function() {
@@ -605,7 +550,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Add button hover effects
     const buttons = document.querySelectorAll('.btn');
     buttons.forEach(btn => {
         btn.addEventListener('mouseenter', function() {
@@ -619,12 +563,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Add event listener for Start Planning button
     startPlanningBtn.addEventListener('click', function() {
-        // Smooth scroll to the trip planning section
         document.querySelector('.container.my-5').scrollIntoView({ behavior: 'smooth' });
         
-        // Add animation to highlight the planning section
         const planningCards = document.querySelectorAll('.container.my-5 .card');
         planningCards.forEach((card, index) => {
             card.style.transition = 'all 0.5s ease';
@@ -641,11 +582,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 2000 + (index * 200));
         });
 
-        // Generate trip plan
         generateTripPlan();
     });
 
-    // Function to generate trip plan
     function generateTripPlan() {
         const tripPlanContainer = document.createElement('div');
         tripPlanContainer.className = 'trip-plan mt-5';
@@ -676,18 +615,15 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         }
 
-        // Append trip plan to the container
         document.querySelector('.container.my-5').appendChild(tripPlanContainer);
     }
 
-    // Enhanced search functionality
     function enhancedSearch() {
         const searchTerm = searchDestination.value.toLowerCase();
         const minPrice = document.getElementById('minPrice').value;
         const maxPrice = document.getElementById('maxPrice').value;
         const continent = document.getElementById('continentFilter').value;
         
-        // Add loading state with spinner
         destinationsList.innerHTML = `
             <div class="col-12 text-center py-5">
                 <div class="spinner-border text-primary" role="status">
@@ -697,9 +633,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
         
-        // Simulate search delay for better UX
         setTimeout(() => {
-            // Advanced filtering logic
             filteredDestinations = popularDestinations.filter(dest => {
                 const matchesSearch = dest.name.toLowerCase().includes(searchTerm) ||
                                     dest.continent.toLowerCase().includes(searchTerm);
@@ -707,7 +641,6 @@ document.addEventListener('DOMContentLoaded', function() {
                                    (!maxPrice || dest.price <= maxPrice);
                 const matchesContinent = !continent || dest.continent === continent;
                 
-                // Calculate relevance score
                 let relevanceScore = 0;
                 if (dest.name.toLowerCase().includes(searchTerm)) relevanceScore += 3;
                 if (dest.continent.toLowerCase().includes(searchTerm)) relevanceScore += 1;
@@ -717,17 +650,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 return matchesSearch && matchesPrice && matchesContinent;
             });
 
-            // Sort by relevance score if there's a search term
             if (searchTerm) {
                 filteredDestinations.sort((a, b) => b.relevanceScore - a.relevanceScore);
             } else if (sortBy.value) {
                 sortDestinations(sortBy.value);
             }
 
-            // Update the UI with search results
             updateDestinationsList();
             
-            // Show search results summary
             const resultsCount = document.createElement('div');
             resultsCount.className = 'alert alert-info mt-3';
             resultsCount.innerHTML = `
@@ -750,7 +680,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 resultsCount.style.opacity = '1';
                 resultsCount.style.transform = 'translateY(0)';
                 
-                // Auto-hide after 5 seconds
                 setTimeout(() => {
                     resultsCount.style.opacity = '0';
                     resultsCount.style.transform = 'translateY(10px)';
@@ -762,7 +691,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 600);
     }
 
-    // Replace the old filterDestinations function with the enhanced search
     searchDestination.removeEventListener('input', filterDestinations);
     searchDestination.addEventListener('input', debounce(enhancedSearch, 500));
     document.getElementById('applyFilters').removeEventListener('click', filterDestinations);
@@ -771,7 +699,6 @@ document.addEventListener('DOMContentLoaded', function() {
         filterModal.hide();
     });
 
-    // Debounce function to prevent too many search requests
     function debounce(func, wait) {
         let timeout;
         return function executedFunction(...args) {
@@ -784,7 +711,6 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 
-    // Helper function to determine weather badge color
     function getWeatherBadgeColor(temp) {
         if (temp < 10) return 'info';
         if (temp < 20) return 'success';
@@ -792,7 +718,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return 'danger';
     }
 
-    // Add event listeners for destination cards
     function addDestinationCardEventListeners() {
         document.querySelectorAll('.favorite-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {

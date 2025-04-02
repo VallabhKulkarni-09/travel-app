@@ -103,11 +103,9 @@ const exploreData = {
     }
 };
 
-// Function to suggest places to explore based on the selected city
 function suggestPlacesToExplore(city) {
     const data = exploreData[city];
     if (!data) return '';
-
     return `
         <h5 class="mt-4">Places to Explore</h5>
         <ul>

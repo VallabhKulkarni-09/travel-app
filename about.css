@@ -1,6 +1,5 @@
-/* About page specific styles */
 .about-hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+    background: linear-gradient(rgba(13, 13, 13, 0.6), rgba(160, 17, 17, 0.6)), 
                 url('images/about-hero.jpg');
     background-size: cover;
     background-position: center;
@@ -35,15 +34,6 @@
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* Divider */
-.divider {
-    height: 3px;
-    width: 60px;
-    background: #3498db;
-    margin: 20px 0 40px;
-}
-
-/* Mission cards */
 .mission-card {
     background-color: white;
     border-radius: 10px;
@@ -80,7 +70,6 @@
     font-weight: 600;
 }
 
-/* Feature cards */
 .feature-card {
     text-align: center;
     padding: 40px 20px;
@@ -108,7 +97,6 @@
     font-weight: 600;
 }
 
-/* Team section */
 .team-image {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
@@ -138,7 +126,6 @@
     line-height: 1.8;
 }
 
-/* Testimonials */
 .testimonials-section {
     margin: 80px 0;
 }
@@ -193,7 +180,6 @@
     color: #6c757d;
 }
 
-/* Contact section */
 .contact-section {
     margin: 80px 0 40px;
 }
@@ -219,7 +205,6 @@
     font-weight: 600;
 }
 
-/* Animation classes */
 .animate-on-scroll {
     opacity: 0;
     transform: translateY(30px);
@@ -231,7 +216,6 @@
     transform: translateY(0);
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
     .about-hero h1 {
         font-size: 2.5rem;
@@ -252,4 +236,4 @@
     .contact-item {
         margin-bottom: 30px;
     }
-} 
+}
